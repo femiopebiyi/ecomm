@@ -72,7 +72,7 @@ header{
     height: 250px;
     width: 200px;
     border-radius: 7px;
-    object-fit: fill;
+    object-fit: contain;
     padding: .2em;
 }
 .img-contain{
@@ -93,11 +93,14 @@ header{
     align-items: flex-start;
     
     margin-bottom: 1em;
-    background-color: rgb(240,240,240);
+    background-color: #fff;
+        border: 1px solid rgb(210, 210, 210);
 }
 .price{
     font-weight: 700;
     font-size: 1rem;
+    color: #FFFFFF;
+    background-color: #1B7339;
 }
 .add{
     display: flex;
@@ -129,6 +132,8 @@ header{
 @media screen and (max-width:760px) {
     .product-container{
         width: 48%;
+        background-color: #fff;
+        border: 1px solid rgb(210,210,210);
     }
 
         .img-contain {
@@ -139,6 +144,7 @@ header{
 
     .product-img{
         width: 90%;
+        object-fit: contain;
     }
 
     .big{
