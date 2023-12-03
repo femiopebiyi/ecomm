@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Inter:wght@200;400&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;1,200;1,300&family=Tektur:wght@600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    box-sizing: border-box;
+    font-family: "Poppins";
+}
+
+header{
+    
+}
+
+.navbar{
+    width: 90%;
+    /* border: 1px solid red; */
+    margin: 0 auto;
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.logo{
+    font-size: 2.0rem;
+    font-weight: 600;
+}
+
+.search{
+    
+    background-color: #000;
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.fa-magnifying-glass{
+    font-size: 25px;
+    color: #fff;
+    height: 100%;
+    padding: 0 .5em;
+}
+
+.fa-cart-shopping{
+    font-size: 25px;
+}
+.search input{
+    padding: .7em 15em .7em 1em;
+    outline: none;
+    
+}
+
+.container{
+    margin: 2em auto;
+    margin-top: 4em;
+    width: 95%;
+    /* border: 1px solid green; */
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    
+}
+
+.product-img{
+    height: 250px;
+    width: 200px;
+    border-radius: 7px;
+    object-fit: cover;
+    padding: .2em;
+}
+.img-contain{
+    width: 100%;
+    
+}
+.search-con{
+    width: 90%;
+    margin: 1em auto;
+    display: flex;
+    visibility: hidden;
+    justify-content: center;
+}
+
+.product-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+    margin-bottom: 1em;
+    background-color: rgb(240,240,240);
+}
+.price{
+    font-weight: 700;
+    font-size: 1rem;
+}
+.add{
+    display: flex;
+    width: 100%;
+    
+    justify-content: space-between;
+    align-items: center;
+}
+
+.to-cart{
+    display: inline-block;
+        outline: 0;
+        border: 0;
+        cursor: pointer;
+        background: #000000;
+        color: #FFFFFF;
+        border-radius: 8px;
+        padding: .4em;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1;
+        transition: transform 201ms, background 201ms;
+
+}
+
+.to-cart:hover {
+    transform: translateY(-2px);
+}
+@media screen and (max-width:760px) {
+    .product-container{
+        width: 48%;
+    }
+    .product-img{
+        width: 100%;
+    }
+
+    .big{
+        display: none;
+    }
+    .search-con{
+        visibility: visible;
+    }
+    .small input{
+        padding-right: 0;
+    }
+    .to-cart{
+        font-size: 15px;
+    }
+}
+
