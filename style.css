@@ -130,8 +130,15 @@ header{
     .product-container{
         width: 48%;
     }
+
+        .img-contain {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
     .product-img{
-        width: 100%;
+        width: 90%;
     }
 
     .big{
