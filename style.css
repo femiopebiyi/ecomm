@@ -16,12 +16,12 @@ body{
 }
 
 header{
-    
+    /* border: 1px solid pink; */
 }
 
 .navbar{
     width: 90%;
-    /* border: 1px solid red; */
+    /* border: 1px solid blue; */
     margin: 0 auto;
     margin-top: 2em;
     display: flex;
@@ -34,6 +34,7 @@ header{
 .logo{
     font-size: 2.0rem;
     font-weight: 600;
+    
 }
 
 .search{
@@ -55,9 +56,13 @@ header{
     font-size: 25px;
 }
 .search input{
-    padding: .7em 15em .7em 1em;
+    padding: 1.25em 15em 1.2em 1em;
     outline: none;
     
+}
+.search input::placeholder{
+    font-weight: 700;
+    color: black;
 }
 
 .container{
@@ -98,8 +103,10 @@ header{
     
     margin-bottom: 1em;
     background-color: #fff;
-        border: 1px solid rgb(210, 210, 210);
-    
+        /* border: 1px solid rgb(210, 210, 210); */
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+        -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 .product-container h2{
@@ -145,11 +152,17 @@ header{
 
 .cart {
     text-align: center;
-    font-weight: 700;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+    
+    justify-content: center;
 }
 
 .cartcount {
-    font-size: 1.5rem;
+    font-size: 1.0rem;
+    display: inline;
 }
 
 @media screen and (max-width:760px) {
@@ -182,5 +195,7 @@ header{
     .to-cart{
         font-size: 15px;
     }
+
+    .navbar{}
 }
 
