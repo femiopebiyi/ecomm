@@ -54,6 +54,7 @@ header{
 
 .fa-cart-shopping{
     font-size: 25px;
+    cursor: pointer;
 }
 .search input{
     padding: 1.25em 15em 1.2em 1em;
