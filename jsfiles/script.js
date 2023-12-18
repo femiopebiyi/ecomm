@@ -1,4 +1,5 @@
 import { products } from "./product.js"
+import { cart } from "./cartItems.js"
 
 let productsHTML = ``
 
@@ -10,7 +11,7 @@ productsHTML += `
         <h2 class="product-name">${product.name}</h2>
         <div class="add">
             <p class="price">₦${product.price}</p>
-            <button class="to-cart">Add to Cart</button>
+            <button class="to-cart js-add" data-product-name="${product.name}">Add to Cart</button>
         </div>
     </div>
     
@@ -37,4 +38,12 @@ const home = document.querySelector(".logo")
 home.addEventListener("click", ()=>{
     console.log("omaiwa")
     window.location.href = "index.html"
+})
+
+const addToCart = document.querySelectorAll(".js-add")
+
+addToCart.forEach((button)=>{
+        button.addEventListener ("click", ()=>{
+        console.log(button.dataset.productName)
+    })
 })
