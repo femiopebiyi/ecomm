@@ -4,10 +4,6 @@ let productsHTML = ``
 
 
 products.forEach((product)=>{
-    // Assuming product.price is a variable containing the actual price value
-
-// Assuming product.image is a variable containing the actual image source URL
-
 productsHTML += `
     <div class="product-container">
         <div class="img-contain"><img src="${product.image}" alt="" class="product-img"></div>
@@ -20,11 +16,7 @@ productsHTML += `
     
 `;
 
-// Continue with the rest of your code...
 
-
-
-// Continue with the rest of your code...
 
 })
 
@@ -37,4 +29,12 @@ cartButton.addEventListener("click", ()=>{
     let cartUrl = `cart.html`
 
     window.location.href = cartUrl
+})
+
+
+const home = document.querySelector(".logo")
+
+home.addEventListener("click", ()=>{
+    console.log("omaiwa")
+    window.location.href = "index.html"
 })
