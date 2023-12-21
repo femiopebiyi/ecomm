@@ -65,8 +65,21 @@ const addToCart = document.querySelectorAll(".js-add")
 addToCart.forEach((button)=>{
         button.addEventListener ("click", ()=>{
         const productName = button.dataset.productName
-        products.forEach((item)=>{
+        const existingItem = cart.find(item => item.name === productName)
+
+        if(existingItem){
+            const buttons = document.querySelectorAll(".to-cart")
+            buttons.forEach((button)=>{
+                if(existingItem.name === button.dataset.productName){
+                    console.log("alreadyyy")
+                    button.innerHTML = "already in cart"
+                }
+            })
+        } else {
+            products.forEach((item)=>{
+            
             if (item.name === productName){
+            
             cart.push({
             name: productName,
             price: item.price,
@@ -76,12 +89,12 @@ addToCart.forEach((button)=>{
         }
         localStorage.setItem("carts", JSON.stringify(cart))
         })
+        }
+        
 
         
         console.log(cart, cart.length)
 
-        
-        
     })
 
 
@@ -128,5 +141,7 @@ if(window.document.title === "Cart"){
     document.querySelector(".container1").innerHTML = cartHtml
 }
 
+
+const select = document.querySelector("select")
 
 
