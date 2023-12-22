@@ -2,20 +2,8 @@
 import { products } from "./product.js"
 // import { cart } from "./cartItems.js"
 
-let cart = [
-    {
-        name: "Trash Can",
-        price: 5000,
-        quantity: 1,
-        image: `trash-can-with-foot-pedal-50-liter.jpg`
-    },
-    {
-        name: "Green Shoe",
-        price: 5090,
-        quantity: 1,
-        image: "men-athletic-shoes-green.jpg"
-    }
-]
+let cart = JSON.parse(localStorage.getItem("carts")) || []
+console.log("cart", cart)
 
 let productsHTML = ``
 
@@ -93,24 +81,22 @@ addToCart.forEach((button)=>{
         
 
         
-        console.log(cart, cart.length)
-
+        
     })
 
 
 })
 
 
-let updatedCart = localStorage.getItem("carts");
 
-cart = JSON.parse(updatedCart) || []
+
 console.log(cart)
 
 let cartHtml = ``
 
 cart.forEach ((cartItem)=>{
     cartHtml += `
-    <div class="product-contain">
+    <div class="product-contain" data-product="${cartItem.name}">
                 <div class="cart-image-container"><img src="${cartItem.image}"></div>
                 <div class="details">
                     <p>${cartItem.name}</p>
@@ -130,18 +116,49 @@ cart.forEach ((cartItem)=>{
                         <option value="1">10</option>
                     </select>
                     </div>
-                    <button class="remove">Remove from cart</button>
+                    <button class="remove js-remove" data-item-name="${cartItem.name}">Remove from cart</button>
                 </div>
                 <div><h4>${cartItem.price}</h4></div>
             </div>
     `
 })
 
+
+
 if(window.document.title === "Cart"){
     document.querySelector(".container1").innerHTML = cartHtml
 }
 
 
-const select = document.querySelector("select")
+const removeFromCart = document.querySelectorAll(".js-remove")
+
+removeFromCart.forEach((item)=>{
+    item.addEventListener("click", function(){
+        const cartItemName = item.dataset.itemName;
+        let objectToRemoveIndex = cart.findIndex(item => item.name === cartItemName)
+        let objectToRemoveName = cart.find(item => item.name === cartItemName)
+        
+
+        if (objectToRemoveIndex !== -1) {
+            cart.splice(objectToRemoveIndex, 1);
+            localStorage.setItem("carts", JSON.stringify(cart));
+        const allProduts = document.querySelectorAll(".product-contain")
+            allProduts.forEach((all)=>{
+                if(all.dataset.product === objectToRemoveName.name){
+                    all.remove()
+                }
+            })
+            console.log(cart)
+}
+
+
+    })
+})
+
+
+
+
+
+
 
 
