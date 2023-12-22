@@ -191,7 +191,7 @@ quantity.forEach((item)=>{
                 newPrice.forEach((item3)=>{
                     const newPr = item3.dataset.newPrice
                     if(newPr === item2.name){
-                        item3.innerHTML = newQuantity;
+                        item3.innerHTML = `₦${newQuantity}`;
                         const anotherNew = cart.find(item => item.name === newPr)
                         if(anotherNew){
                             anotherNew.price = newQuantity;
