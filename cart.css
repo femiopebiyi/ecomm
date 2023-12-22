@@ -73,6 +73,21 @@
     margin-top: 1em;
 }
 
+.empty-cart{
+    display: flex;
+    
+    flex-direction: column;
+    gap: .4rem;
+    justify-content: center;
+    align-items: center;
+
+
+}
+.empty{
+    height: 200px;
+    
+}
+
 @media screen and (width > 960px) {
     .total{
         position: fixed;

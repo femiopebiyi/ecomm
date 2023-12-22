@@ -115,7 +115,7 @@ cart.forEach ((cartItem)=>{
                     </div>
                     <button class="remove js-remove" data-item-name="${cartItem.name}">Remove from cart</button>
                 </div>
-                <div><h4 class="new-price" data-new-price="${cartItem.name}">₦${cartItem.price}</h4></div>
+                <div><h4 class="new-price" data-new-price="${cartItem.name}">${cartItem.price}</h4></div>
             </div>
     `
 })
@@ -130,7 +130,9 @@ if(window.document.title === "Cart"){
 const removeFromCart = document.querySelectorAll(".js-remove")
 
 removeFromCart.forEach((item)=>{
+    
     item.addEventListener("click", function(){
+        checkIfEmpty()
         const cartItemName = item.dataset.itemName;
         let objectToRemoveIndex = cart.findIndex(item => item.name === cartItemName)
         let objectToRemoveName = cart.find(item => item.name === cartItemName)
@@ -154,7 +156,7 @@ removeFromCart.forEach((item)=>{
 
 
 
-
+const newPrice = document.querySelectorAll(".new-price")
 
 
 function updateTotalPrice (){
@@ -166,8 +168,10 @@ let totalItems = document.querySelector(".total-item")
 
     let total = 0;
 
-    cart.forEach((item)=>{
-        total += item.price
+    newPrice.forEach((item)=>{
+        let number = parseFloat(item.innerHTML, 10)
+        total+= number
+        console.log(total)
     })
 
     totalPrice.innerHTML = `₦${total}`
@@ -177,24 +181,25 @@ let totalItems = document.querySelector(".total-item")
 updateTotalPrice()
 
 const quantity = document.querySelectorAll(".item-quantity");
-const newPrice = document.querySelectorAll(".new-price")
+
 
 quantity.forEach((item)=>{
     item.addEventListener("change", function(){
         const dataQuantity = item.dataset.quantity
         let quantity = item.value;
+        let initial = cart.find(item => item.name === dataQuantity);
+        let initialPrice = initial.price
+        console.log(initialPrice)
         cart.forEach((item2)=>{
-            let initalQuantity = item2.price
+            
             if(item2.name === dataQuantity){
-                let newQuantity = initalQuantity*= quantity
-                
+                let newQuantity = initialPrice * quantity
                 newPrice.forEach((item3)=>{
                     const newPr = item3.dataset.newPrice
                     if(newPr === item2.name){
-                        item3.innerHTML = `₦${newQuantity}`;
+                        item3.innerHTML = newQuantity;
                         const anotherNew = cart.find(item => item.name === newPr)
                         if(anotherNew){
-                            anotherNew.price = newQuantity;
                             updateTotalPrice()
                         }
                     }
@@ -203,5 +208,23 @@ quantity.forEach((item)=>{
         })
     })
 })
+
+
+function checkIfEmpty(){
+    const page = document.querySelector(".cart-contain");
+const length = document.querySelectorAll(".product-contain")
+if(length.length < 1){
+    document.body.innerHTML = `
+    <div class="empty-cart">
+    <img src="./empty-cart.png" class="empty">
+    <h4>Your Cart is empty <a href="index.html">Go to Store</a></h4>
+    </div>
+    `
+    const emptyCart = document.querySelector(".empty-cart")
+    emptyCart.style.height = "100vh"
+}
+}
+
+checkIfEmpty()
 
 
