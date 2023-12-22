@@ -79,9 +79,6 @@ addToCart.forEach((button)=>{
         })
         }
         
-
-        
-        
     })
 
 
@@ -103,22 +100,22 @@ cart.forEach ((cartItem)=>{
                     <p class="stock">In stock!!!</p>
                     <div class="quantity">
                     <label for="for">Qty</label>
-                    <select name="for">
+                    <select name="for"class="item-quantity" data-quantity="${cartItem.name}">
                         <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="1">5</option>
-                        <option value="1">6</option>
-                        <option value="1">7</option>
-                        <option value="1">8</option>
-                        <option value="1">9</option>
-                        <option value="1">10</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
                     </select>
                     </div>
                     <button class="remove js-remove" data-item-name="${cartItem.name}">Remove from cart</button>
                 </div>
-                <div><h4>₦${cartItem.price}</h4></div>
+                <div><h4 class="new-price" data-new-price="${cartItem.name}">₦${cartItem.price}</h4></div>
             </div>
     `
 })
@@ -157,11 +154,12 @@ removeFromCart.forEach((item)=>{
 
 
 
-let totalPrice = document.querySelector(".total-price")
-let totalItems = document.querySelector(".total-item")
+
 
 
 function updateTotalPrice (){
+    let totalPrice = document.querySelector(".total-price")
+let totalItems = document.querySelector(".total-item")
     const length = document.querySelectorAll(".product-contain")
     const totalLength = length.length
     totalItems.innerHTML = `Total(${totalLength} items)`
@@ -177,4 +175,33 @@ function updateTotalPrice (){
 
 
 updateTotalPrice()
+
+const quantity = document.querySelectorAll(".item-quantity");
+const newPrice = document.querySelectorAll(".new-price")
+
+quantity.forEach((item)=>{
+    item.addEventListener("change", function(){
+        const dataQuantity = item.dataset.quantity
+        let quantity = item.value;
+        cart.forEach((item2)=>{
+            let initalQuantity = item2.price
+            if(item2.name === dataQuantity){
+                let newQuantity = initalQuantity*= quantity
+                
+                newPrice.forEach((item3)=>{
+                    const newPr = item3.dataset.newPrice
+                    if(newPr === item2.name){
+                        item3.innerHTML = newQuantity;
+                        const anotherNew = cart.find(item => item.name === newPr)
+                        if(anotherNew){
+                            anotherNew.price = newQuantity;
+                            updateTotalPrice()
+                        }
+                    }
+                })
+            }
+        })
+    })
+})
+
 
