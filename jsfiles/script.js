@@ -118,7 +118,7 @@ cart.forEach ((cartItem)=>{
                     </div>
                     <button class="remove js-remove" data-item-name="${cartItem.name}">Remove from cart</button>
                 </div>
-                <div><h4>${cartItem.price}</h4></div>
+                <div><h4>₦${cartItem.price}</h4></div>
             </div>
     `
 })
@@ -151,14 +151,30 @@ removeFromCart.forEach((item)=>{
             console.log(cart)
 }
 
-
+    updateTotalPrice()
     })
 })
 
 
 
+let totalPrice = document.querySelector(".total-price")
+let totalItems = document.querySelector(".total-item")
 
 
+function updateTotalPrice (){
+    const length = document.querySelectorAll(".product-contain")
+    const totalLength = length.length
+    totalItems.innerHTML = `Total(${totalLength} items)`
+
+    let total = 0;
+
+    cart.forEach((item)=>{
+        total += item.price
+    })
+
+    totalPrice.innerHTML = `₦${total}`
+}
 
 
+updateTotalPrice()
 

@@ -56,3 +56,5 @@ home.addEventListener("click", ()=>{
 // })
 
 // document.querySelector(".container1").innerHTML = cartHtml
+
+

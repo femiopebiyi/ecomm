@@ -53,6 +53,7 @@
 .total{
     height: fit-content;
     text-align: center;
+    
 }
 .checkout{
     width: 100%;
@@ -68,9 +69,16 @@
     color: #fff;
     background: black;
     font-weight: 700;
+    padding: .4em .3em;
+    margin-top: 1em;
 }
 
-
+@media screen and (width > 960px) {
+    .total{
+        position: fixed;
+        right: 2%;
+    }
+}
 
 @media screen and (max-width: 980px){
     .cart-container{
@@ -101,5 +109,12 @@
 
 .product-contain{
     width: 100%
+}
+
+.remove{
+    margin-top: .5em;
+}
+.checkout{
+    margin-bottom: 1.5em;
 }
 }
