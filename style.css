@@ -15,9 +15,7 @@ body{
     font-family: "Poppins";
 }
 
-header{
-    /* border: 1px solid pink; */
-}
+
 
 .navbar{
     width: 90%;
@@ -175,12 +173,15 @@ header{
 .cartcount {
     position: absolute;
     top: -20px;
-    left: 9px;
+    left: 6px;
     font-size: 1.0rem;
     display: inline;
 }
 
+
+
 @media screen and (max-width:760px) {
+    
     .product-container{
         width: 48%;
         background-color: #fff;
@@ -211,6 +212,15 @@ header{
         font-size: 15px;
     }
 
-    .navbar{}
+    
+    /* .cart{
+        position: fixed;
+        right: 20px;
+        
+    } */
 }
 
+/* .sticky {
+    z-index: 100;
+    
+} */
