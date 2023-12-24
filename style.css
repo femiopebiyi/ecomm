@@ -87,7 +87,17 @@ header{
 }
 .img-contain{
     width: 100%;
-    
+    position: relative;
+}
+.fa-square-check{
+    position: absolute;
+    top: 50%;
+        right: 50%;
+        transform: translate(50%, -50%);
+        transform: scale(2.5);
+        visibility: hidden;
+        color: #1B7339;
+        transition: visibility .2s ease-in-out;
 }
 .search-con{
     width: 90%;

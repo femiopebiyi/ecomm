@@ -11,7 +11,7 @@ let productsHTML = ``
 products.forEach((product)=>{
 productsHTML += `
     <div class="product-container">
-        <div class="img-contain"><img src="${product.image}" alt="" class="product-img"></div>
+        <div class="img-contain"><img src="${product.image}" alt="" class="product-img"><i class="fa-solid fa-square-check" data-green="${product.name}"></i></div>
         <h2 class="product-name">${product.name}</h2>
         <div class="add">
             <p class="price">₦${product.price}</p> 
@@ -50,9 +50,28 @@ home.addEventListener("click", ()=>{
 
 const addToCart = document.querySelectorAll(".js-add")
 
+function greenCheck(dataset){
+    const greenColor = document.querySelectorAll(".fa-square-check")
+    greenColor.forEach((item)=>{
+        const greenData = item.dataset.green;
+        if(dataset === greenData){
+            item.style.visibility = "visible";
+            setTimeout(()=>{
+                item.style.visibility = "hidden";
+            },1200)
+        }
+    })
+}
+
 addToCart.forEach((button)=>{
         button.addEventListener ("click", ()=>{
-        const productName = button.dataset.productName
+        const productName = button.dataset.productName;
+        const matchingColor = cart.find(item=> item.name === productName)
+        if(matchingColor){
+            button.innerHTML = "already in cart"
+            return;
+        }
+        greenCheck(button.dataset.productName)
         const existingItem = cart.find(item => item.name === productName)
 
         if(existingItem){
@@ -166,14 +185,19 @@ function updateTotalPrice (){
 let totalItems = document.querySelector(".total-item")
     const length = document.querySelectorAll(".product-contain")
     const totalLength = length.length
+    if(window.document.title === "Cart"){
     totalItems.innerHTML = `Total(${totalLength} items)`
 
+}
+    
     let total = 0;
 
     cart.forEach((item)=>{
         total += item.price
 
     })
+    
+    
     
     totalPrice.innerHTML = `₦${total}`
 
@@ -231,3 +255,5 @@ quantity.forEach((item)=>{
         match.price = stagnantPrice
     })
 })
+
+
