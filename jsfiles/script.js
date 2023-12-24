@@ -87,7 +87,7 @@ addToCart.forEach((button)=>{
 
 
 
-console.log(cart)
+
 
 let cartHtml = ``
 
@@ -115,7 +115,7 @@ cart.forEach ((cartItem)=>{
                     </div>
                     <button class="remove js-remove" data-item-name="${cartItem.name}">Remove from cart</button>
                 </div>
-                <div><h4 class="new-price" data-new-price="${cartItem.name}">${cartItem.price}</h4></div>
+                <div><h4 class="new-price" data-new-price="${cartItem.name}">₦${cartItem.price}</h4></div>
             </div>
     `
 })
@@ -132,7 +132,7 @@ const removeFromCart = document.querySelectorAll(".js-remove")
 removeFromCart.forEach((item)=>{
     
     item.addEventListener("click", function(){
-        checkIfEmpty()
+    
         const cartItemName = item.dataset.itemName;
         let objectToRemoveIndex = cart.findIndex(item => item.name === cartItemName)
         let objectToRemoveName = cart.find(item => item.name === cartItemName)
@@ -145,9 +145,11 @@ removeFromCart.forEach((item)=>{
             allProduts.forEach((all)=>{
                 if(all.dataset.product === objectToRemoveName.name){
                     all.remove()
+                    
+                    
                 }
             })
-            console.log(cart)
+            // console.log(cart)
 }
 
     updateTotalPrice()
@@ -157,10 +159,10 @@ removeFromCart.forEach((item)=>{
 
 
 const newPrice = document.querySelectorAll(".new-price")
-
+let totalPrice = document.querySelector(".total-price")
 
 function updateTotalPrice (){
-    let totalPrice = document.querySelector(".total-price")
+    
 let totalItems = document.querySelector(".total-item")
     const length = document.querySelectorAll(".product-contain")
     const totalLength = length.length
@@ -168,52 +170,28 @@ let totalItems = document.querySelector(".total-item")
 
     let total = 0;
 
-    newPrice.forEach((item)=>{
-        let number = parseFloat(item.innerHTML, 10)
-        total+= number
-        console.log(total)
-    })
+    cart.forEach((item)=>{
+        total += item.price
 
+    })
+    
     totalPrice.innerHTML = `₦${total}`
+
+    if(total === 0){
+        checkIfEmpty()
+    }
 }
 
 
 updateTotalPrice()
 
-const quantity = document.querySelectorAll(".item-quantity");
 
 
-quantity.forEach((item)=>{
-    item.addEventListener("change", function(){
-        const dataQuantity = item.dataset.quantity
-        let quantity = item.value;
-        let initial = cart.find(item => item.name === dataQuantity);
-        let initialPrice = initial.price
-        console.log(initialPrice)
-        cart.forEach((item2)=>{
-            
-            if(item2.name === dataQuantity){
-                let newQuantity = initialPrice * quantity
-                newPrice.forEach((item3)=>{
-                    const newPr = item3.dataset.newPrice
-                    if(newPr === item2.name){
-                        item3.innerHTML = newQuantity;
-                        const anotherNew = cart.find(item => item.name === newPr)
-                        if(anotherNew){
-                            updateTotalPrice()
-                        }
-                    }
-                })
-            }
-        })
-    })
-})
+
+
 
 
 function checkIfEmpty(){
-    const page = document.querySelector(".cart-contain");
-const length = document.querySelectorAll(".product-contain")
-if(length.length < 1){
     document.body.innerHTML = `
     <div class="empty-cart">
     <img src="./empty-cart.png" class="empty">
@@ -222,9 +200,14 @@ if(length.length < 1){
     `
     const emptyCart = document.querySelector(".empty-cart")
     emptyCart.style.height = "100vh"
-}
+
 }
 
+
+const productContain = document.querySelectorAll(".product-contain")
+if(productContain.length < 1){
 checkIfEmpty()
+
+}
 
 
