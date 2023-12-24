@@ -296,3 +296,58 @@ countCart()
 // };
 
 
+function performSearch(query) {
+    const regex = new RegExp(query, 'i'); // 'i' flag for case-insensitive search
+    const results = products.filter(product => regex.test(product.name));
+    return results;
+    }
+    
+
+    function updateResults(query) {
+    const resultsContainer = document.getElementById("results");
+    resultsContainer.innerHTML = "";
+
+    if (query !== "") {
+    const searchResults = performSearch(query);
+    searchResults.forEach(result => {
+        const listItem = document.createElement("li");
+        listItem.classList.add("searchResults");
+        listItem.textContent = result.name;
+        resultsContainer.appendChild(listItem);
+    });
+    }
+
+    const searchClick = document.querySelectorAll(".searchResults")
+
+    searchClick.forEach((item)=>{
+        item.addEventListener("click", ()=>{
+            const name = item.innerHTML;
+            const addToCart = document.querySelectorAll(".js-add");
+            
+
+            addToCart.forEach((add)=>{
+                const addData = add.dataset.productName
+                if(name == addData){
+                add.scrollIntoView({ behavior: "smooth" })
+                
+            }
+            })
+
+            
+        })
+    })
+
+    }
+
+    const searchInput = document.querySelectorAll(".searchInput");
+
+    searchInput.forEach((search)=>{
+        search.addEventListener("input", function () {
+    const query = this.value.trim();
+    updateResults(query);
+    });
+    })
+
+
+
+    

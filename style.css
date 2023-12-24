@@ -178,7 +178,21 @@ body{
     display: inline;
 }
 
+#results{
+    
+}
+#results li{
+    text-align: center;
+    cursor: pointer;
+    text-decoration: underline;
+    color: black;
+    font-weight: 500;
 
+}
+
+#results li:hover{
+    color: gray;
+}
 
 @media screen and (max-width:760px) {
     
