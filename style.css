@@ -169,9 +169,13 @@ header{
     /* border: 1px solid red; */
     
     justify-content: center;
+    position: relative;
 }
 
 .cartcount {
+    position: absolute;
+    top: -20px;
+    left: 9px;
     font-size: 1.0rem;
     display: inline;
 }

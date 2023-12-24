@@ -58,7 +58,7 @@ function greenCheck(dataset){
             item.style.visibility = "visible";
             setTimeout(()=>{
                 item.style.visibility = "hidden";
-            },1200)
+            },1000)
         }
     })
 }
@@ -97,7 +97,7 @@ addToCart.forEach((button)=>{
         localStorage.setItem("carts", JSON.stringify(cart))
         })
         }
-        
+        countCart()
     })
 
 
@@ -172,6 +172,7 @@ removeFromCart.forEach((item)=>{
 }
 
     updateTotalPrice()
+    countCart()
     })
 })
 
@@ -197,7 +198,7 @@ let totalItems = document.querySelector(".total-item")
 
     })
     
-    
+    if(totalPrice === null) return
     
     totalPrice.innerHTML = `₦${total}`
 
@@ -205,6 +206,9 @@ let totalItems = document.querySelector(".total-item")
         checkIfEmpty()
     }
 }
+
+
+
 
 
 updateTotalPrice()
@@ -216,6 +220,7 @@ updateTotalPrice()
 
 
 function checkIfEmpty(){
+if(window.document.title === "Cart"){
     document.body.innerHTML = `
     <div class="empty-cart">
     <img src="./empty-cart.png" class="empty">
@@ -223,6 +228,9 @@ function checkIfEmpty(){
     </div>
     `
     const emptyCart = document.querySelector(".empty-cart")
+}
+
+    
     // emptyCart.style.height = "100vh"
 
 }
@@ -255,5 +263,22 @@ quantity.forEach((item)=>{
         match.price = stagnantPrice
     })
 })
+
+
+function countCart(){
+const cartCount = document.querySelector(".cartcount");
+
+if(cart.length >= 10){
+    cartCount.innerHTML = cart.length
+} else{
+    cartCount.innerHTML = `0${cart.length}`
+}
+
+
+
+}
+
+countCart()
+
 
 
