@@ -10,7 +10,7 @@ let productsHTML = ``
 
 products.forEach((product)=>{
 productsHTML += `
-    <div class="product-container">
+    <div class="product-container" data-product-div="${product.name}">
         <div class="img-contain"><img src="${product.image}" alt="" class="product-img"><i class="fa-solid fa-square-check" data-green="${product.name}"></i></div>
         <h2 class="product-name">${product.name}</h2>
         <div class="add">
@@ -321,12 +321,13 @@ function performSearch(query) {
 
     searchClick.forEach((item)=>{
         item.addEventListener("click", ()=>{
+            console.log("yes")
             const name = item.innerHTML;
-            const addToCart = document.querySelectorAll(".js-add");
+            const addToCart = document.querySelectorAll(".product-container");
             
 
             addToCart.forEach((add)=>{
-                const addData = add.dataset.productName
+                const addData = add.dataset.productDiv
                 if(name == addData){
                 add.scrollIntoView({ behavior: "smooth" })
                 
@@ -345,7 +346,8 @@ function performSearch(query) {
         search.addEventListener("input", function () {
     const query = this.value.trim();
     updateResults(query);
-    });
+    })
+    
     })
 
 
