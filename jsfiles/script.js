@@ -204,7 +204,8 @@ let totalItems = document.querySelector(".total-item")
     
     if(totalPrice === null) return
     
-    totalPrice.innerHTML = `₦${total}`
+    let resultString = addCommas(`${total}`);
+    totalPrice.innerHTML = `₦${resultString}`
 
     if(total === 0){
         checkIfEmpty()
@@ -388,6 +389,8 @@ function performSearch(query) {
         str = str.slice(0, 3) + ',' + str.slice(3);
     } else if(str.length === 5){
         str = str.slice(0, 2) + ',' + str.slice(2);
+    } else if(str.length === 4){
+        str = str.slice(0, 1) + ',' + str.slice(1);
     }
     return str;
 }
