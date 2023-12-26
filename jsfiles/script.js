@@ -31,6 +31,8 @@ if(window.document.title === "Femi Store"){
 
 
 
+
+
 const cartButton = document.querySelector(".fa-cart-shopping");
 
 cartButton.addEventListener("click", ()=>{
@@ -283,7 +285,7 @@ quantity.forEach((item)=>{
             
         })
         
-        
+        removeRefresh()
     })
 })
 
