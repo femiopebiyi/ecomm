@@ -151,7 +151,7 @@ const removeFromCart = document.querySelectorAll(".js-remove")
 removeFromCart.forEach((item)=>{
     
     item.addEventListener("click", function(){
-    
+        
         const cartItemName = item.dataset.itemName;
         let objectToRemoveIndex = cart.findIndex(item => item.name === cartItemName)
         let objectToRemoveName = cart.find(item => item.name === cartItemName)
@@ -170,9 +170,11 @@ removeFromCart.forEach((item)=>{
             })
             // console.log(cart)
 }
-
+    
+    
     updateTotalPrice()
     countCart()
+    removeRefresh()
     })
 })
 
@@ -216,7 +218,21 @@ updateTotalPrice()
 
 
 
+function removeRefresh (){
+    const newprices = document.querySelectorAll(".new-price");
+    let total = 0
 
+    newprices.forEach((pri)=>{
+        const remove = pri.innerHTML.substring(1)
+        const number = parseFloat(remove, 10);
+        total+=number
+
+    })
+
+    const totalPrice = document.querySelector(".total-price")
+    console.log(total)
+    totalPrice.innerHTML = `₦${total}`
+}
 
 
 function checkIfEmpty(){
@@ -254,15 +270,23 @@ quantity.forEach((item)=>{
         const stagnantPrice = match.price;
         let newPrice = match.price * item.value;
         match.price = newPrice;
-        newprice.forEach((price)=>{
-            const newPriceData = price.dataset.newPrice;
-            const pricetag = cart.find(item => item.name === newPriceData)
-            price.innerHTML = `₦${pricetag.price}`
+        newprice.forEach((priceData)=>{
+            const data = priceData.dataset.newPrice;
+            if(data == quantityData){
+                const newData = data;
+                const find = cart.find(item1 => item1.name === newData)
+                find.price = newPrice
+                priceData.innerHTML = `₦${find.price}`
+                updateTotalPrice()
+                find.price = stagnantPrice
+            }
+            
         })
-        updateTotalPrice()
-        match.price = stagnantPrice
+        
+        
     })
 })
+
 
 
 function countCart(){
