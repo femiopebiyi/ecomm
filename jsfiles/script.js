@@ -233,7 +233,11 @@ function removeRefresh (){
 
     const totalPrice = document.querySelector(".total-price")
     console.log(total)
-    totalPrice.innerHTML = `₦${total}`
+    
+
+    
+    let resultString = addCommas(`${total}`);
+    totalPrice.innerHTML = `₦${resultString}`
 }
 
 
@@ -378,4 +382,16 @@ function performSearch(query) {
 
 
 
-    
+    function addCommas(str) {
+    if (str.length >= 6) {
+        // Use regular expression to insert a comma after every 3 characters
+        str = str.slice(0, 3) + ',' + str.slice(3);
+    } else if(str.length === 5){
+        str = str.slice(0, 2) + ',' + str.slice(2);
+    }
+    return str;
+}
+
+// Example usage:
+
+  // Output: "1,234,567,890"
