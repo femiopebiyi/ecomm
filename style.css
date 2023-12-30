@@ -15,7 +15,46 @@ body{
     font-family: "Poppins";
 }
 
+.hide{
+    transform: translateY(-200px);
+}
 
+.signIn{
+    position: absolute;
+    top: 3px;
+    right: 40%;
+}
+.usermail{
+    font-weight: 700;
+}
+
+#popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 60px;
+    /* background: rgba(0, 0, 0, 0.5); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all ease-in-out;
+    z-index: 1;
+}
+
+#popup-content {
+    display: flex;
+    background: #fff;
+    align-items: center;
+    gap: .7rem;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#welcome-message {
+    margin: 0;
+}
 
 .navbar{
     width: 90%;

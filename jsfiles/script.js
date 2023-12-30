@@ -1,3 +1,32 @@
+const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('email');
+
+
+    console.log(`Welcome ${name}`)
+
+    const popUp = document.querySelector("#popup-container")
+    const popUpMsg = document.querySelector(".usermail")
+    const signIn = document.querySelector(".signIn")
+    signIn.style.display = "block"
+
+    popUp.classList.add("hide")
+    if(name){
+        signIn.style.display = "none"
+        setTimeout(()=>{
+        popUpMsg.innerHTML = `${name}`
+        popUp.classList.remove("hide")
+        
+    },2000)
+    }
+    
+    const cancelPopUp = document.querySelector(".fa-xmark")
+
+    
+
+    cancelPopUp.addEventListener("click", ()=>{
+        popUp.classList.add("hide")
+    })
+
 // alert("hello")
 import { products } from "./product.js"
 // import { cart } from "./cartItems.js"
@@ -395,6 +424,4 @@ function performSearch(query) {
     return str;
 }
 
-// Example usage:
 
-  // Output: "1,234,567,890"

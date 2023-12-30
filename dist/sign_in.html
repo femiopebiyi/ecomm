@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="sign_in.css">
+</head>
+<body>
+    
+    <h2 class="welcome">Welcome to Femi Stores</h2>
+
+    <form class="form">
+        <div class="first-name-container">
+            <label for="firstname">First Name:</label>
+            <input type="text" name="firstname" id="firstname">
+        </div>
+        <div class="last-name-container">
+            <label for="lastname">Last Name:</label>
+            <input type="text" name="lastname" id="lastname">
+        </div>
+        <div class="email-container">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email">
+        </div>
+        <div class="password-container">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <p class="error-message"></p>
+        <button class="submit" type="button">SignUp</button>
+
+        <p class="question"><span class="dont">Dont have an account? </span><span class="signupquestion"><a href="">Signup</a></span></p>
+    </form>
+
+
+    <script src="bundle.js"></script>
+</body>
+</html>
