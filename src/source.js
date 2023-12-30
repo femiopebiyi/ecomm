@@ -145,7 +145,7 @@ const signIn = async ()=>{
                 const user = userCred.user;
                 if(user.emailVerified){
                     console.log("you are verified")
-                    window.location.href = `../index.html`
+                    window.location.href = `../index.html?email=${email}`
                 } else{
                     console.log("your email is not verified")
                     errorMsg.innerHTML = "your email is not verified"

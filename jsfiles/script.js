@@ -441,14 +441,35 @@ const urlParams = new URLSearchParams(window.location.search);
 
 function showPopup() {
     popUp.style.transform = "translateY(0px)";
+    popUpMsg.innerHTML = name;
 }
 
 // Set a timeout to call the function after 2 seconds
 
 
-    if(name){
-        
-    }
+    function delay(timeout) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve();
+    }, timeout);
+  });
+}
+
+
+
+if (name) {
+  if (window.document.title === 'Femi Store') {
+    delay(2000)
+      .then(() => {
+        showPopup();
+      })
+      .then(() => {
+        // After the popup is shown, replace the URL
+        const newUrl = window.location.pathname;
+        history.replaceState({}, document.title, newUrl);
+      });
+  }
+}
     
     const cancelPopUp = document.querySelector(".fa-xmark")
 
@@ -472,10 +493,7 @@ let authObserver;
 const monitorAuth = () => {
      authObserver = onAuthStateChanged(auth, (user) => {
         if (user) {
-            if(window.document.title === 'Femi Store'){
-                setTimeout(showPopup, 2000);
-            popUpMsg.innerHTML = user.email;
-            }
+            
             
             // User is signed in
             console.log('User is signed in:', user);
