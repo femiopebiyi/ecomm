@@ -467,25 +467,29 @@ function showPopup() {
     console.log(details)
 })
 
+let authObserver;
+
 const monitorAuth = () => {
-    onAuthStateChanged(auth, (user)=>{
+     authObserver = onAuthStateChanged(auth, (user) => {
         if (user) {
-            setTimeout(showPopup, 2000);
-        popUpMsg.innerHTML = user.email
+            if(window.document.title === 'Femi Store'){
+                setTimeout(showPopup, 2000);
+            popUpMsg.innerHTML = user.email;
+            }
+            
             // User is signed in
             console.log('User is signed in:', user);
-            username.innerHTML = user.email || "usermail"
-
-            signin.style.display = "none"
+            username.innerHTML = user.email || "usermail";
+            signin.style.display = "none";
         } else {
             // User is signed out
             console.log('User is signed out');
-            logout.style.display = 'none'
-
-
+            logout.style.display = 'none';
         }
-    })
+    });
 };
+
+const unsubscribe = () => authObserver();
 
 // Call the function to set up the listener
 monitorAuth()
@@ -515,3 +519,5 @@ function openSidebar() {
 };
 
 logout.addEventListener("click", signOutUser)
+
+
