@@ -82,6 +82,7 @@ const monitor = async ()=>{
         onAuthStateChanged(auth, (user)=>{
             if(user){
                 console.log("user is logged in")
+                console.log(user)
                 firstNameCon.style.display = 'none'
                 lastNameCon.style.display = 'none'
                 signInUp.innerHTML = "Login"
@@ -94,7 +95,7 @@ const monitor = async ()=>{
                 firstNameCon.style.display = 'flex'
                 lastNameCon.style.display = 'flex'
                 signInUp.innerHTML = "signUp"
-                dontHave.innerHTML = "Have an account? "
+                dontHave.innerHTML = "Have an account?"
                 question.innerHTML = "Login"
             }
         })
@@ -144,7 +145,7 @@ const signIn = async ()=>{
                 const user = userCred.user;
                 if(user.emailVerified){
                     console.log("you are verified")
-                    window.location.href = `../index.html?email=${email}`
+                    window.location.href = `../index.html`
                 } else{
                     console.log("your email is not verified")
                     errorMsg.innerHTML = "your email is not verified"

@@ -1,31 +1,36 @@
-const urlParams = new URLSearchParams(window.location.search);
-    const name = urlParams.get('email');
+import { initializeApp } from "firebase/app";
 
-
-    console.log(`Welcome ${name}`)
-
-    const popUp = document.querySelector("#popup-container")
-    const popUpMsg = document.querySelector(".usermail")
-    const signIn = document.querySelector(".signIn")
-    signIn.style.display = "block"
-
-    popUp.classList.add("hide")
-    if(name){
-        signIn.style.display = "none"
-        setTimeout(()=>{
-        popUpMsg.innerHTML = `${name}`
-        popUp.classList.remove("hide")
-        
-    },2000)
-    }
+import{
+    getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut,
+    onAuthStateChanged, sendEmailVerification
+} from "firebase/auth";
     
-    const cancelPopUp = document.querySelector(".fa-xmark")
+import {
+    getFirestore, onSnapshot, addDoc, serverTimestamp,
+    collection
+} from "firebase/firestore"
 
-    
+const firebaseConfig = {
+    apiKey: "AIzaSyBWI9QBD-sdKXMxNkA-hXqei5gBFdXyNYk",
+    authDomain: "femi-store.firebaseapp.com",
+    projectId: "femi-store",
+    storageBucket: "femi-store.appspot.com",
+    messagingSenderId: "780697984323",
+    appId: "1:780697984323:web:f5301c31747adca32863f6"
+};
 
-    cancelPopUp.addEventListener("click", ()=>{
-        popUp.classList.add("hide")
-    })
+const username = document.getElementById("username")
+const signin = document.getElementById("signin")
+const logout = document.getElementById("logout")
+
+
+initializeApp(firebaseConfig)
+
+const auth = getAuth()
+const database = getFirestore()
+
+const colRef = collection(database, "userDetails")
+
 
 // alert("hello")
 import { products } from "./product.js"
@@ -425,3 +430,88 @@ function performSearch(query) {
 }
 
 
+const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('email');
+
+
+    console.log(`Welcome ${name}`)
+
+    const popUp = document.querySelector("#popup-container")
+    const popUpMsg = document.querySelector(".usermail")
+
+function showPopup() {
+    popUp.style.transform = "translateY(0px)";
+}
+
+// Set a timeout to call the function after 2 seconds
+
+
+    if(name){
+        
+    }
+    
+    const cancelPopUp = document.querySelector(".fa-xmark")
+
+    
+
+    cancelPopUp.addEventListener("click", ()=>{
+        popUp.style.transform = "translateY(-200px)"
+    })
+
+    onSnapshot(colRef, (snapshot)=>{
+    let details =[]
+    snapshot.docs.forEach(doc=>{
+        details.push({...doc.data(), id: doc.id})
+    })
+
+    console.log(details)
+})
+
+const monitorAuth = () => {
+    onAuthStateChanged(auth, (user)=>{
+        if (user) {
+            setTimeout(showPopup, 2000);
+        popUpMsg.innerHTML = user.email
+            // User is signed in
+            console.log('User is signed in:', user);
+            username.innerHTML = user.email || "usermail"
+
+            signin.style.display = "none"
+        } else {
+            // User is signed out
+            console.log('User is signed out');
+            logout.style.display = 'none'
+
+
+        }
+    })
+};
+
+// Call the function to set up the listener
+monitorAuth()
+
+function openSidebar() {
+        document.getElementById("sidebar").style.width = "250px";
+    }
+
+    function closeSidebar() {
+        document.getElementById("sidebar").style.width = "0";
+    }
+
+
+     document.getElementById("menu-btn").addEventListener("click", openSidebar);
+    document.getElementById("close").addEventListener("click", (e)=>{
+        e.preventDefault()
+        closeSidebar()
+    });
+
+
+    const signOutUser = () => {
+    signOut(auth)
+    logout.style.display = 'none'
+    location.reload();
+    
+
+};
+
+logout.addEventListener("click", signOutUser)

@@ -9,6 +9,21 @@
     <link rel="stylesheet" href="cart.css">
 </head>
 <body>
+
+    <div id="sidebar">
+        <h4 id="username">username</h4>
+        <a href="#" id="close">Close</a>
+        <a href="./dist/sign_in.html" id="signin">SignIn</a>
+        <a href="#" id="logout">Logout</a>
+    </div>
+    
+    <div id="menu-btn">&#9776;</div>
+    <div id="popup-container" class="hidden">
+        <div id="popup-content">
+            <p id="welcome-message">Welcome, <span class="usermail"></span></p>
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+    </div>
     <header>
         <nav class="navbar">
             <div class="logo">Femi Store</div>
@@ -89,7 +104,7 @@
             <button class="checkout">Proceed to checkout</button>
         </div>
     </div>
-    <script type="module" src="../jsfiles/script.js"></script>
+    <script type="module" src="./dist/scriptbundle.js"></script>
     <!-- <script type="module" src="../jsfiles/cart.js"></script> -->
     
 

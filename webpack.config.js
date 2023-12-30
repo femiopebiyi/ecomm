@@ -1,11 +1,14 @@
-const path =  require('path')
+const path = require('path');
 
 module.exports = {
     mode: 'development',
-    entry: './src/source.js',
+    entry: {
+        source: './src/source.js',
+        script: './jsfiles/script.js'  // New entry for script.js
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: '[name]bundle.js'  // Use [name] placeholder to generate dynamic bundle names
     },
     watch: true
-}
+};

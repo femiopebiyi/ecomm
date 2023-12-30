@@ -15,9 +15,44 @@ body{
     font-family: "Poppins";
 }
 
-.hide{
-    transform: translateY(-200px);
-}
+ #sidebar {
+     height: 100%;
+     width: 0;
+     position: fixed;
+     z-index: 1;
+     top: 0;
+     left: 0;
+     background-color: #111;
+     overflow-x: hidden;
+     transition: 0.5s;
+     padding-top: 60px;
+ }
+        #sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #fff;
+            display: block;
+            transition: 0.3s;
+        }
+         #menu-btn {
+    font-size: 30px;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+    color: #000;
+        }
+
+        #username{
+            text-align: center;
+            color:white;
+        }
+
+/* .show{
+    transform: translateY(200px)
+} */
 
 .signIn{
     position: absolute;
@@ -39,7 +74,8 @@ body{
     align-items: center;
     justify-content: center;
     transition: all ease-in-out;
-    z-index: 1;
+    z-index: 10;
+    transform: translateY(-200px);
 }
 
 #popup-content {
@@ -265,12 +301,19 @@ body{
         font-size: 15px;
     }
 
+
+        #popup-container{
+            width: 100%;
+        }
     
     /* .cart{
         position: fixed;
         right: 20px;
         
     } */
+    #menu-btn{
+        top: 3px;
+    }
 }
 
 /* .sticky {
