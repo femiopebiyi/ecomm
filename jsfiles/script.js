@@ -503,6 +503,7 @@ const monitorAuth = () => {
             // User is signed out
             console.log('User is signed out');
             logout.style.display = 'none';
+            username.innerHTML = "usermail";
         }
     });
 };
