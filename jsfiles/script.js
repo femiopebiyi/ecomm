@@ -7,7 +7,7 @@ import{
     
 import {
     getFirestore, onSnapshot, addDoc, serverTimestamp,
-    collection
+    collection, where, query, getDoc, doc
 } from "firebase/firestore"
 
 const firebaseConfig = {
@@ -503,7 +503,7 @@ const monitorAuth = () => {
             // User is signed out
             console.log('User is signed out');
             logout.style.display = 'none';
-            username.innerHTML = "usermail";
+            username.innerHTML = "username";
         }
     });
 };
@@ -523,7 +523,9 @@ function openSidebar() {
 
 
      document.getElementById("menu-btn").addEventListener("click", openSidebar);
-    document.getElementById("close").addEventListener("click", (e)=>{
+    const closeBt = document.getElementById("close")
+
+closeBt.addEventListener("click", (e)=>{
         e.preventDefault()
         closeSidebar()
     });
@@ -540,3 +542,79 @@ function openSidebar() {
 logout.addEventListener("click", signOutUser)
 
 
+
+// document.body.addEventListener("click", function(event){
+    
+    
+//     const menu = document.querySelector("#menu-btn")
+//     const contain = document.querySelector("#popup-container")
+    
+//     if(menu.contains(event.target)===true || contain.contains(event.target)=== true){
+//         console.log("clicked outside")
+//     } else{
+//         // if(hamButton.classList.contains("close")){
+//             closeBt.click()
+//         // }
+
+//     }
+// })
+
+/// checkout
+
+const checkOutBtn = document.querySelector(".checkout")
+
+const monitorFunc = ()=>{
+    onAuthStateChanged(auth, (user)=>{
+        if(!user){
+            window.location.href = "./dist/sign_in.html"
+        }
+    })
+}
+
+
+if(window.document.title === "Cart"){
+checkOutBtn.addEventListener("click", ()=>{
+    monitorFunc()
+})
+}
+
+
+
+
+
+
+
+
+
+
+
+const docRef = doc(database, 'userDetails', 'Idb7QCd5RVmCcsokMYqB')
+
+const getParticularData = ()=> 
+onAuthStateChanged(auth, (user)=>{
+    if(user){
+        console.log(user.email)
+        const userMail = user.email
+          onSnapshot(colRef, (snapshot)=>{
+    let details =[]
+    snapshot.docs.forEach(doc=>{
+        details.push({...doc.data(), id: doc.id})
+    })
+
+    const find = details.find(item=> item.email === userMail)
+    console.log(find.last_name)
+    username.innerHTML = find.last_name || "username"
+})
+
+    }
+})
+
+
+
+
+// getDoc(docRef)
+//     .then((doc)=>{
+//         console.log(doc.data(), doc.id)
+//     })
+
+    getParticularData()

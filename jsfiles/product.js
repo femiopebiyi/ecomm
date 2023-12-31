@@ -144,7 +144,7 @@ export const products = [
     {
         id: "4df68c27-fd59-4a6a-bbd1-e754ddb6d53c",
         image: "men-navigator-sunglasses-brown.jpg",
-        name: "Navigator Sunglasses",
+        name: "Sunglasses",
         rating: {
             stars: 3.5,
             count: 42
