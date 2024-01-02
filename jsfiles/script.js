@@ -595,7 +595,7 @@ onAuthStateChanged(auth, (user)=>{
     if(user){
         console.log(user.email)
         const userMail = user.email
-          onSnapshot(colRef, (snapshot)=>{
+        onSnapshot(colRef, (snapshot)=>{
     let details =[]
     snapshot.docs.forEach(doc=>{
         details.push({...doc.data(), id: doc.id})
@@ -603,7 +603,8 @@ onAuthStateChanged(auth, (user)=>{
 
     const find = details.find(item=> item.email === userMail)
     console.log(find.last_name)
-    username.innerHTML = find.last_name || "username"
+    username.innerHTML = find.first_name || "username"
+    
 })
 
     }
